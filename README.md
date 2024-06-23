@@ -420,7 +420,7 @@ echo '
 
     <h1>{{ page_title }}</h1>
 
-    <p>{{ request.user }} {{ request.methode }} - {{ request.user.is_authenticated }}</p>
+    <p>{{ request.user }} {{ request.method }} - {{ request.user.is_authenticated }}</p>
 
 {% endblock content %}' > ~/Development/Websites/psi/src/templates/home.html
 ```
@@ -441,7 +441,7 @@ echo '<div>
 
 &nbsp;  
 
-##### Templates "BASE_DIR" --> setttings\.py
+##### Templates "BASE_DIR" --> settings\.py
 
 In order for Django to be able to find our templates we will need to make some configurations within our Settings\.py file.  
 Located at ```~/Development/Websites/psi/src/core/settings.py```.  
@@ -550,11 +550,19 @@ git init
 git branch -m main
 ```
 
-
+Along with
 
 ```bash
-
+  git config --global user.email "you@example.com"
 ```
+
+- *Replacing you email*
+
+```bash
+  git config --global user.name "Your Name"
+```
+
+- *And replacing you username*
 
 ```bash
 git status
