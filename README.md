@@ -617,6 +617,11 @@ And now if we check within the repo on GitHub we should see our code there.
 
 ## Prepare our code for deployment
 
+ALLOWED_HOSTS
+
+
+
+
 ```bash
 
 ```
