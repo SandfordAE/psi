@@ -3,7 +3,7 @@
 PSI is a Django SaaS website template.  
 This stack is achieved by leveraging DaisyUI/Tailwind, Htmx, Neon Postgres, AllAuth, Git and more.
 
-The goal of this project is to create a reusable template/boilerrplate SaaS for building out different SaaS products quickly.  
+The goal of this project is to create a reusable template/boileLrplate SaaS for building out different SaaS products quickly.  
 When completed this site will span multiple products and give you a solid foundation to sell your services from.
 
 &nbsp;  
@@ -160,11 +160,11 @@ stripe"
 With our VENV active,  
 Upgrade pip (Optional).
 
-```bsah
+```bash
 pip install --upgrade pip
 ```
 
-Install the contents of requirments.txt
+Install the contents of requirements.txt
 
 ```bash
 pip install -r requirements.txt
@@ -174,7 +174,7 @@ pip install -r requirements.txt
 
 #### Prepare the ".env" file
 
-We will be using Django Decouple to utilze our .env file.  
+We will be using Django Decouple to utilize our .env file.  
 But first we need to populate the values of the file.
 
 Create a new ```DJANGO_SECRET_KEY``` for ```~/Development/Websites/psi/core/settings.py```
@@ -222,7 +222,7 @@ We can now start a new project called core.
 django-admin startproject core .  
 ```
 
-- *N.B. The dot at the end means creat it in this directory.*
+- *N.B. The dot at the end means create it in this directory.*
 
 &nbsp;  
 
@@ -387,7 +387,7 @@ To get us started we'll just create 3 simple Html pages.
 echo '<!DOCTYPE html>
 <html>
     <head>
-        <title>{% block head_title %}SaaS{% endblock head_title %}</title>
+        <title>{% block head_title %}SaaS Template{% endblock head_title %}</title>
     </head>
     <body>
 
@@ -395,14 +395,9 @@ echo '<!DOCTYPE html>
         <h1>{{ page_title }}</h1>
         {% endblock content %}
 
-        {% include 'snippets/welcome-user-msg.html' %}
-
-        <p> Page Visits: {{ page_visit_count }} </p>
-        <p> Total Visits: {{ percent }} </p>
-        <p> Total Visits: {{ total_visit_count }} </p>
-
     </body>
-</html>' > ~/Development/Websites/psi/src/templates/base.html
+</html>
+' > ~/Development/Websites/psi/src/templates/base.html
 ```
 
 &nbsp;
@@ -413,16 +408,24 @@ echo '<!DOCTYPE html>
 echo '
 {% extends "base.html" %}
 
-{% block head_title %} Homepage -{{ block.super }} {% endblock head_title %}
+{% block head_title %} {{ block.super }} - {{ page_title }} {% endblock head_title %}
 
 
 {% block content %}
-
     <h1>{{ page_title }}</h1>
+    <p>Hello Again!</p>
 
-    <p>{{ request.user }} {{ request.method }} - {{ request.user.is_authenticated }}</p>
+    {% include "snippets/welcome-user-msg.html" %}
 
-{% endblock content %}' > ~/Development/Websites/psi/src/templates/home.html
+    <p> Page Visits: {{ page_visit_count }} </p>
+    <p> Total Visits: {{ percent }} % </p>
+    <p> Total Visits: {{ total_visit_count }} </p>
+    <p>User:  {{ request.user }} </p>
+    <p>Method: {{ request.method }} </p>
+    <p>Is Authenticated: {{ request.user.is_authenticated }}</p>
+
+{% endblock content %}
+' > ~/Development/Websites/psi/src/templates/home.html
 ```
 
 &nbsp;
@@ -459,7 +462,7 @@ On ```Line 57``` we should edit it to point to our folders.
 
 - With that now completed we should have a basic but working shell of a django website.
 
-- If we run the server we should see working examples of Django's Template Inheritance, Conditions, & Include functioality.
+- If we run the server we should see working examples of Django's Template Inheritance, Conditions, & Include functionality.
 
 &nbsp;  
 
@@ -538,6 +541,8 @@ We should have a nice baseline app that we can start to prepare for deployment.
 
 ## Git & preparing for Github
 
+### Initiate Git within our working directory
+
 From within our ```~/Development/Websites/psi``` folder run the command..
 
 ```bash
@@ -550,7 +555,7 @@ git init
 git branch -m main
 ```
 
-Along with
+### Set our local Git identity
 
 ```bash
   git config --global user.email "you@example.com"
@@ -564,18 +569,66 @@ Along with
 
 - *And replacing you username*
 
+&nbsp;
+
+### First Commit
+
+Now when we run ```git status``` we should get some output.
+
 ```bash
 git status
 ```
+
+- *Then*
 
 ```bash
 git add --all
 ```
 
+- *And*
+
 ```bash
 git commit -m "Very First Commit Msg"
 ```
 
+&nbsp;
+
+### First push to GitHub
+
+At this stage we will need to go to [GitHub](https://github.com/) and create a new repo called psi.
+
+Once thats done we will need to link our project to the newly created repo.
+
+```bash
+git remote add origin https://github.com/SandfordAE/psi.git
+```
+
+And now that our project is linked to Github we should be able to push it with the command,
+
+```bash
+ git push -u origin main
+```
+
+And now if we check within the repo on GitHub we should see our code there.
+
+&nbsp;
+
+&nbsp;
+
+## Prepare our code for deployment
+
+```bash
+
+```
+
+```bash
+
+```
+
+```bash
+
+```
+
 ```bash
 
 ```
@@ -620,10 +673,6 @@ git commit -m "Very First Commit Msg"
 
 
 
-
-```bash
-
-```
 
 ```bash
 
