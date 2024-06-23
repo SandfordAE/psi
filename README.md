@@ -619,8 +619,9 @@ And now if we check within the repo on GitHub we should see our code there.
 
 ALLOWED_HOSTS
 
+Django Decouple
 
-
+1:48:01
 
 ```bash
 
@@ -656,29 +657,6 @@ ALLOWED_HOSTS
 
 &nbsp;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ```bash
 
 ```
@@ -754,16 +732,6 @@ ALLOWED_HOSTS
 ```bash
 
 ```
-
-
-
-
-
-
-
-
-
-
 
 ***
 
@@ -780,11 +748,6 @@ ALLOWED_HOSTS
 ***
 
 ***
-
-
-
-
-
 
 ## =============================
 
@@ -796,14 +759,40 @@ Much more coming soon!
 python manage.py vendor_pull
 ```
 
-
-
-
-
-
-
-
 ```js
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Your First HTML Webpage with Python Functions
 
 ## Rendering HTML Documents
@@ -811,10 +800,6 @@ python manage.py vendor_pull
 ## Using Django Templates
 
 ## Django Template Inheritance, Conditions, & Include
-
-
-
-
 
 ## Store and Retrieve Data Part 1
 
@@ -829,6 +814,9 @@ python manage.py vendor_pull
 ## The Hard Way to Manage Environment Variables
 
 ## dotenv and Python Decouple to Manage Environment Variables
+
+
+
 
 ## Provision a Serverless PostgreSQL Database with Neon
 
@@ -960,13 +948,28 @@ python manage.py vendor_pull
 
 ## Decouple Dashboard
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ```
-
-
-
-
-
-
 
 ***
 
@@ -976,11 +979,11 @@ Some standard files needed to get most Django projects up and running.
 
 ### Create a ".gitignore"
 
-* *For now we'll just create the file and we can edit it as we go.*
+- *For now we'll just create the file and we can edit it as we go.*
 
 ```bash
 
-# Ignore our vitual environment
+# Ignore our virtual environment
 VENV/
 
 # ignore vendor static files
@@ -1294,7 +1297,7 @@ dist
 
 ### Create the "Dockerfile"
 
-* *For now we'll just create the file and we can edit it as we go.*
+- *For now we'll just create the file and we can edit it as we go.*
 
 ```bash
 # Set the python version as a build-time argument
@@ -1383,7 +1386,7 @@ CMD ./paracord_runner.sh
 
 ### Create a new .env file
 
-* *For now we'll just create the file and we can edit it as we go.*
+- *For now we'll just create the file and we can edit it as we go.*
 
 ```bash
 sudo cp ~/Desktop/Django/Git-Clone/.env.sample ~/Desktop/Django/.env
@@ -1393,7 +1396,7 @@ sudo cp ~/Desktop/Django/Git-Clone/.env.sample ~/Desktop/Django/.env
 cat .env
 ```
 
-* *Output* should look like this
+- *Output* should look like this
 
 ```python
 Values include:
@@ -1411,7 +1414,7 @@ Values include:
 
 ```
 
-### Create a Licence agreement
+### Create a License agreement
 
 Copy this command into a terminal within the src directory
 
@@ -1437,5 +1440,5 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE." > ~/Development/Websites/psi/src/LICENCE
+SOFTWARE." > ~/Development/Websites/psi/src/LICENSE
 ```
