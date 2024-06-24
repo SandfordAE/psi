@@ -1,6 +1,8 @@
-# PSI setup
 
-PSI is a Django SaaS website template.  
+# PSI - Django SaaS template
+
+## PSI overview
+
 This stack is achieved by leveraging DaisyUI/Tailwind, Htmx, Neon Postgres, AllAuth, Git and more.
 
 The goal of this project is to create a reusable template/boilerplate SaaS for building out different SaaS products quickly.  
@@ -617,11 +619,89 @@ And now if we check within the repo on GitHub we should see our code there.
 
 ## Prepare our code for deployment
 
+python-decouple
+
+```~/Development/Websites/psi/settings.py```
+
+Edit
+
 ALLOWED_HOSTS
 
-Django Decouple
+DJANGO_DEBUG
 
-1:48:01
+DJANGO_SECRET_KEY
+
+## Neondb
+
+### Provision Neon
+
+Create new DB
+
+get DATABASE_URL
+
+to the .env
+
+### Integrate Neon
+
+```~/Development/Websites/psi/settings.py```
+
+```bash
+
+# NeonDB settings
+
+CONN_MAX_AGE = config("CONN_MAX_AGE", cast=int, default=300)
+DATABASE_URL = config("DATABASE_URL", default=None)
+
+if DATABASE_URL is not None:
+    import dj_database_url
+    DATABASES = {
+        "default": dj_database_url.config(
+            default=DATABASE_URL,
+            conn_max_age=CONN_MAX_AGE,
+            conn_health_checks=True,
+        )
+    }
+```
+
+```bash
+ python manage.py makemigrations
+```
+
+```bash
+ python manage.py migrate
+```
+
+```bash
+ python manage.py createsuperuser  
+```
+
+&nbsp;
+
+### Version Control
+
+Neon console
+
+Dev branch
+
+&nbsp;
+
+## Tailwind
+
+```bash
+
+```
+
+```bash
+
+```
+
+```bash
+
+```
+
+```bash
+
+```
 
 ```bash
 
@@ -641,9 +721,71 @@ Django Decouple
 
 &nbsp;
 
-&nbsp;
+```bash
+
+```
+
+```bash
+
+```
+
+```bash
+
+```
+
+```bash
+
+```
+
+```bash
+
+```
+
+```bash
+
+```
+
+```bash
+
+```
+
+```bash
+
+```
 
 &nbsp;
+
+```bash
+
+```
+
+```bash
+
+```
+
+```bash
+
+```
+
+```bash
+
+```
+
+```bash
+
+```
+
+```bash
+
+```
+
+```bash
+
+```
+
+```bash
+
+```
 
 &nbsp;
 
@@ -825,6 +967,9 @@ python manage.py vendor_pull
 ## Neon in Production + Database Branching
 
 ## Styling with CDN for TailwindCSS and Flowbite
+
+
+
 
 ## Configure Django Static Files in Dev
 

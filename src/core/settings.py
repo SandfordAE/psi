@@ -54,10 +54,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config("DJANGO_SECRET_KEY") 
 
+
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = str(os.environ.get("DJANGO_DEBUG")).lower() == "true"
-
-
 DEBUG = config("DJANGO_DEBUG", cast=bool)
 BASE_URL = config("BASE_URL", default=None)
 
@@ -160,6 +158,9 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+
+# Local Sqlite.db
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -169,18 +170,20 @@ DATABASES = {
 
 
 
-# CONN_MAX_AGE = config("CONN_MAX_AGE", cast=int, default=300)
-# DATABASE_URL = config("DATABASE_URL", default=None)
+# NeonDB settings
 
-# if DATABASE_URL is not None:
-#     import dj_database_url
-#     DATABASES = {
-#         "default": dj_database_url.config(
-#             default=DATABASE_URL,
-#             conn_max_age=CONN_MAX_AGE,
-#             conn_health_checks=True,
-#         )
-#     }
+CONN_MAX_AGE = config("CONN_MAX_AGE", cast=int, default=300)
+DATABASE_URL = config("DATABASE_URL", default=None)
+
+if DATABASE_URL is not None:
+    import dj_database_url
+    DATABASES = {
+        "default": dj_database_url.config(
+            default=DATABASE_URL,
+            conn_max_age=CONN_MAX_AGE,
+            conn_health_checks=True,
+        )
+    }
 
 
 
