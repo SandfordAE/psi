@@ -621,15 +621,40 @@ And now if we check within the repo on GitHub we should see our code there.
 
 python-decouple
 
-```~/Development/Websites/psi/settings.py```
+Edit - ```~/Development/Websites/psi/settings.py```
 
-Edit
+- Import decouple
 
-ALLOWED_HOSTS
+```bash
+from decouple import config
+```
 
-DJANGO_DEBUG
+- Edit ALLOWED_HOSTS
 
-DJANGO_SECRET_KEY
+```bash
+ALLOWED_HOSTS = [
+    ".gammadelta.ie",
+    ".railway.app" # https://saas.prod.railway.app
+]
+if DEBUG:
+    ALLOWED_HOSTS += [
+        "127.0.0.1",
+        "localhost"
+    ]
+```
+
+- Edit DJANGO_DEBUG
+
+```bash
+DEBUG = config("DJANGO_DEBUG", cast=bool)
+BASE_URL = config("BASE_URL", default=None)
+```
+
+- Edit DJANGO_SECRET_KEY
+
+```bash
+SECRET_KEY = config("DJANGO_SECRET_KEY") 
+```
 
 ## Neondb
 
@@ -685,61 +710,134 @@ Dev branch
 
 &nbsp;
 
-## Tailwind
+## Tailwind/Flowbite
+
+Use Flowbites CDN directly to begin
+
+Navigate to the [Flowbite](https://flowbite.com/docs/getting-started/quickstart/#include-via-cdn)/include-via-cdn page
+
+&nbsp;
+
+Create a new templates directory and 2 new files
+
+Create a ```~/Development/Websites/psi/src/templates/base``` folder.
 
 ```bash
-
+mkdir "~/Development/Websites/psi/src/templates/base"
 ```
 
-```bash
+Create a ```~/Development/Websites/psi/src/templates/base/css.html``` page.
 
+```bash
+touch "~/Development/Websites/psi/src/templates/base/css.html"
 ```
 
-```bash
-
-```
+Create a ```~/Development/Websites/psi/src/templates/base/js.html``` page.
 
 ```bash
-
-```
-
-```bash
-
-```
-
-```bash
-
-```
-
-```bash
-
-```
-
-```bash
-
+touch "~/Development/Websites/psi/src/templates/base/js.html"
 ```
 
 &nbsp;
 
-```bash
+Using template inheritance to reference the CDN's
 
-```
-
-```bash
-
-```
+The Flowbite CSS ```<link>``` goes below the ```<title>``` tag in the ```<head>``` of our ```templates/base.html```,  
 
 ```bash
-
+    {% include 'base/css.html' %}
 ```
+
+and the JavaScript ```<script>``` file should be referenced above the closing ```<body>``` tag also of our ```templates/base.html```.
 
 ```bash
-
+    {% include 'base/js.html' %}
 ```
+
+&nbsp;
+
+### Navbar using CDN
+
+Go grab a navbar from FlowBite and put it into the ```~/Development/Websites/psi/src/templates/nav/navbar.html``` file.
+
+Don't forget to also add it to ```/home/san/Desktop/Development/Websites/psi/src/templates/base.html```
 
 ```bash
-
+{% include 'nav/navbar.html' %}
 ```
+
+&nbsp;
+
+## Managing our Static files
+
+Create a new folder called staticfiles,  
+Within that create vendors.
+
+```bash
+mkdir -p ~/Development/Websites/psi/src/staticfiles/vendors/ 
+```
+
+Create ```flowbite.min.css```
+
+```bash
+touch ~/Development/Websites/psi/src/staticfiles/vendors/flowbite.min.css
+```
+
+Create ```flowbite.min.js```
+
+```bash
+touch ~/Development/Websites/psi/staticfiles/vendors/flowbite.min.js
+```
+
+&nbsp;
+
+Now if we go to the source webpage  of the ```src/templates/base/css.html``` file,  
+Copy the contents using "save page as" to the ```src/staticfiles/vendors/``` directory
+
+And repeat the step for the ```JS``` file to ```src/staticfiles/vendors/flowbite.min.js```
+
+&nbsp;
+
+Now if we go to ```settings.py```
+
+```bash
+STATIC_URL = "static/"
+STATICFILES_BASE_DIR = BASE_DIR / "staticfiles"
+STATICFILES_VENDOR_DIR = STATICFILES_BASE_DIR / "vendors"
+
+# source(s) for python manage.py collectstatic 
+STATICFILES_DIRS = [
+    STATICFILES_BASE_DIR
+]
+
+# output for python manage.py collectstatic 
+# local cdn
+STATIC_ROOT = BASE_DIR / "local-cdn"
+```
+
+### Collect-static - local-cdn
+
+```bash
+python manage.py collectstaic
+```
+
+this will collect all static and create a local-cdn folder to store them in.
+
+Now we change the contents of ```/home/san/Desktop/Development/Websites/psi/src/templates/base/css.html``` to....
+
+```bash
+{% load static %}
+<link href="{% static 'vendors/flowbite.min.css' %}" rel="stylesheet" />
+```
+
+Now we change the contents of ```/home/san/Desktop/Development/Websites/psi/src/templates/base/js.html``` to....
+
+```bash
+{% load static %}
+<script src="{% static 'vendors/flowbite.min.js' %}"></script>
+```
+
+&nbsp;
 
 ```bash
 
@@ -957,9 +1055,6 @@ python manage.py vendor_pull
 
 ## dotenv and Python Decouple to Manage Environment Variables
 
-
-
-
 ## Provision a Serverless PostgreSQL Database with Neon
 
 ## Integrate PostgreSQL with Django
@@ -968,10 +1063,13 @@ python manage.py vendor_pull
 
 ## Styling with CDN for TailwindCSS and Flowbite
 
-
-
-
 ## Configure Django Static Files in Dev
+
+
+
+
+
+
 
 ## Download Url to Local File Helper Function
 
@@ -1127,6 +1225,8 @@ Some standard files needed to get most Django projects up and running.
 - *For now we'll just create the file and we can edit it as we go.*
 
 ```bash
+# Ignore the Git clone
+Git-Clone/
 
 # Ignore our virtual environment
 VENV/
