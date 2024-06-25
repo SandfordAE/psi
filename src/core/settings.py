@@ -18,7 +18,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 
-# # Configure Gmail for Django Emails: https://www.codingforentrepreneurs.com/blog/sending-email-in-django-from-gmail/
+# # Configure Gmail for Django Emails:
+# # https://www.codingforentrepreneurs.com/blog/sending-email-in-django-from-gmail/
 
 # # Email config
 # EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
@@ -86,7 +87,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 
     # my-apps
-#    "commando",
+   "staticmanager",
 #    "customers",
 #    "profiles",
 #    "subscriptions",
@@ -94,10 +95,10 @@ INSTALLED_APPS = [
 
     # third-party-apps
 #    "allauth_ui",
-#    'allauth',
-#    'allauth.account',
-#    'allauth.socialaccount',
-#    'allauth.socialaccount.providers.github',
+#    "allauth",
+#    "allauth.account",
+#    "allauth.socialaccount",
+#    "allauth.socialaccount.providers.github",
 #    "widget_tweaks",
 ]
 
@@ -119,6 +120,7 @@ MIDDLEWARE = [
     # "allauth.account.middleware.AccountMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
 
 
 
