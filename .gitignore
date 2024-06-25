@@ -3,6 +3,7 @@
 # Ignore our Vitual environment
 VENV/
 
+DEV--README.md
 # ignore vendor static files
 src/staticfiles/vendors
 Git-Clone/
